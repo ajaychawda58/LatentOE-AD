@@ -26,3 +26,12 @@ class cifar10_feat():
 class fmnist_feat():
     data_name = "fmnist_feat"
     num_cls =10
+class car_insurance():
+    data_name = "car_insurance"
+    num_cls = 1
+class vehicle_insurance():
+    data_name = "vehicle_insurance"
+    num_cls = 1
+class vehicle_claims():
+    data_name = "vehicle_claims"
+    num_cls = 1

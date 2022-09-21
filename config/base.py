@@ -42,6 +42,9 @@ class Config:
         'arrhythmia':Arrhythmia,
         'cifar10': cifar10_feat,
         'fmnist': fmnist_feat,
+        'car_insurance':car_insurance,
+        'vehicle_insurance':vehicle_insurance,
+        'vehicle_claims':vehicle_claims,
     }
 
     models = {

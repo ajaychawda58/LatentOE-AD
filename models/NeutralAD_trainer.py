@@ -103,8 +103,8 @@ class NeutralAD_trainer:
                 z= model(samples)
                 loss_n,loss_a = self.loss_fun(z)
                 score = loss_n
-                loss_in += loss_n[labels == 0].sum()
-                loss_out += loss_n[labels == 1].sum()
+                loss_in += loss_n[labels[:,0] == 0].sum()
+                loss_out += loss_n[labels[:,0] == 1].sum()
                 target_all.append(labels)
                 score_all.append(score)
 

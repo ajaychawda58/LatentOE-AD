@@ -18,6 +18,7 @@ from scipy import io
 from .utils import *
 import torch
 import numpy as np
+import pandas as pd
 
 def CIFAR10_feat(normal_class,root='DATA/cifar10_features/',contamination_rate=0.0):
     trainset = torch.load(root+'trainset_2048.pt')
@@ -114,6 +115,44 @@ def Arrhythmia_data(contamination_rate):
     train, train_label = synthetic_contamination(train_norm, outliers, contamination_rate)
     return train, train_label, test_data, test_label
 
+def car_insurance():
+    trainset = pd.read_csv('DATA/car_insurance/train_label.csv')
+    train_data = np.array(trainset.values)
+    train_labels = pd.read_csv('DATA/car_insurance/train_label_Y.csv')
+    train_label = np.array(train_labels.values)
+
+    testset = pd.read_csv('DATA/car_insurance/test_label.csv')
+    test_data = np.array(testset.values)
+    test_labels = pd.read_csv('DATA/car_insurance/test_label_Y.csv')
+    test_label = np.array(test_labels.values)
+
+    return train_data, train_label, test_data, test_label
+
+def vehicle_insurance():
+    trainset = pd.read_csv('DATA/vehicle_insurance/train_label.csv')
+    train_data = np.array(trainset.values)
+    train_labels = pd.read_csv('DATA/vehicle_insurance/train_label_Y.csv')
+    train_label = np.array(train_labels.values)
+
+    testset = pd.read_csv('DATA/vehicle_insurance/test_label.csv')
+    test_data = np.array(testset.values)
+    test_labels = pd.read_csv('DATA/vehicle_insurance/test_label_Y.csv')
+    test_label = np.array(test_labels.values)
+
+    return train_data, train_label, test_data, test_label
+
+def vehicle_claims():
+    trainset = pd.read_csv('DATA/vehicle_claims/train_label.csv')
+    train_data = np.array(trainset.values)
+    train_labels = pd.read_csv('DATA/vehicle_claims/train_label_Y.csv')
+    train_label = np.array(train_labels.values)
+
+    testset = pd.read_csv('DATA/vehicle_claims/test_label.csv')
+    test_data = np.array(testset.values)
+    test_labels = pd.read_csv('DATA/vehicle_claims/test_label_Y.csv')
+    test_label = np.array(test_labels.values)
+
+    return train_data, train_label, test_data, test_label
 
 def load_data(data_name,cls,contamination_rate=0.0):
 
@@ -127,7 +166,12 @@ def load_data(data_name,cls,contamination_rate=0.0):
         train, train_label, test, test_label = Thyroid_data(contamination_rate)
     elif data_name == 'arrhythmia':
         train, train_label, test, test_label = Arrhythmia_data(contamination_rate)
-
+    elif data_name == 'car_insurance':
+        train, train_label, test, test_label = car_insurance()
+    elif data_name == 'vehicle_insurance':
+        train, train_label, test, test_label = vehicle_insurance()
+    elif data_name == 'vehicle_claims':
+        train, train_label, test, test_label = vehicle_claims()
     trainset = CustomDataset(train,train_label)
     testset = CustomDataset(test,test_label)
     return trainset,testset,testset
